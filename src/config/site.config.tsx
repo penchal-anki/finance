@@ -10,7 +10,7 @@ enum MODE {
 }
 
 export const siteConfig = {
-  title: `REVRR - ${process.env.APP_NAME}`,
+  title: `Finance - ${process.env.APP_NAME}`,
   description: process.env.APP_NAME || '',
   logo: logoImg,
   icon: logoIconImg,
@@ -29,7 +29,7 @@ export const metaObject = (
     openGraph: openGraph ?? {
       title: process.env.APP_NAME,
       description,
-      url: 'https://security.revrr.ai/',
+      url: '',
       siteName: process.env.APP_NAME,
       images: {
         url: 'https://revsec-logo.s3.ap-south-1.amazonaws.com/rev.jpg',

@@ -1,7 +1,7 @@
 export const billingHistoryData = [
   {
     userFriendlyId: 'T-0001',
-    email: 'prakash@revrrlabs.com',
+    email: 'prakash@.com',
     risk: 'High',
     provider: 'chatgpt',
     activities: [
@@ -95,7 +95,7 @@ export const billingHistoryData = [
   },
   {
     userFriendlyId: 'T-0002',
-    email: 'prakash@revrrlabs.com',
+    email: 'prakash@.com',
     risk: 'Low',
     issueStatus: 'Blocked',
     provider: 'grammarly',
@@ -170,7 +170,7 @@ export const billingHistoryData = [
   },
   {
     userFriendlyId: 'T-0003',
-    email: 'prakash@revrrlabs.com',
+    email: 'prakash@.com',
     risk: 'Medium',
     issueStatus: 'Blocked',
     provider: 'google',
