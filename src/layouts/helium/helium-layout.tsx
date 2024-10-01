@@ -43,8 +43,8 @@ export default function HeliumLayout({
           </div>
           <div>
             <Avatar
-              src={'https://docs.material-tailwind.com/img/face-3.jpg'}
-              name={'PA'}
+              src={''}
+              name={'Su Sa'}
               // initials={initial && initial}
               size="md"
               className={cn('text-white font-bold gray-1000 bg-primary-100 h-10 w-10 cursor-pointer')}
