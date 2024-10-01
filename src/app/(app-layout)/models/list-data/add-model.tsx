@@ -79,10 +79,10 @@ const AddKeyFrom = ({ onAddKeySubmit }: any) => {
                         </div>
 
                         <Input
-                            label="Model Name"
+                            label="Name"
                             color="info"
                             labelClassName='text-gray-700'
-                            placeholder="Enter policy name"
+                            placeholder="Enter name"
                             className="col-span-full [&>label>span]:font-normal border-gray-300 ring-gray-300 text-gray-500"
                             inputClassName="text-sm h-11 ring-[0.6] border-gray-300 ring-gray-300 text-base text-gray-500"
                             {...register('modelName')}

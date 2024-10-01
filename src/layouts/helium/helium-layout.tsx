@@ -39,15 +39,15 @@ export default function HeliumLayout({
         <div className='flex items-center justify-between w-full'>
           <div className='flex items-center'>
             <Image src={finance} alt="logo" className='w-[28px] h-[28px]' />
-            <div className='text-[24px] font-medium ml-[10px]'>Financial Planner</div>
+            <div className='text-[24px] font-medium ml-[10px]'>Budget</div>
           </div>
           <div>
             <Avatar
               src={'https://docs.material-tailwind.com/img/face-3.jpg'}
-              name={''}
+              name={'PA'}
               // initials={initial && initial}
               size="md"
-              className={cn('text-primary-600 font-bold gray-1000 bg-primary-100 h-10 w-10 cursor-pointer')}
+              className={cn('text-white font-bold gray-1000 bg-primary-100 h-10 w-10 cursor-pointer')}
               color='secondary'
             />
           </div>
@@ -56,7 +56,7 @@ export default function HeliumLayout({
       <main className="flex flex-grow mt-[74px]">
         <Sidebar className="fixed hidden dark:bg-gray-50 xl:block" />
         <div className="flex w-full flex-col xl:ms-[312px] xl:w-[calc(100%-312px)] 2xl:ms-[312px] 2xl:w-[calc(100%-312px)]">
-          <div className="flex flex-grow flex-col px-4 pb-6 pt-5 md:px-5 lg:px-10 lg:pb-8 xl:pl-3 2xl:pl-10 3xl:px-10 3xl:pl-8 3xl:pt-5 4xl:px-10 4xl:pb-9 4xl:pl-10 bg-[#f4f5f74f]">
+          <div className="flex flex-grow flex-col px-4 pb-6 pt-5 md:px-5 lg:px-10 lg:pb-8 xl:pl-3 2xl:pl-10 3xl:px-10 3xl:pl-8 3xl:pt-5 4xl:px-10 4xl:pb-9 4xl:pl-10">
             {children}
             <Modal
               isOpen={isExpired}

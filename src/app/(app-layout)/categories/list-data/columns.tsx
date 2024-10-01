@@ -173,7 +173,7 @@ export const getColumns = ({
 }: Columns) => [
     {
       title: <HeaderCell
-        title="Category Name"
+        title="Name"
         className='ml-3'
         sortable={true}
         isShowIcon={useTableParams.sortBy === 'categoryName'}
@@ -224,7 +224,7 @@ export const getColumns = ({
     {
       title: (
         <HeaderCell
-          title="createdAt"
+          title="Last Modified"
           sortable={true}
           isShowIcon={useTableParams.sortBy === 'createdAt'}
           ascending={
