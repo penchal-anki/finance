@@ -72,7 +72,7 @@ export default function TableList({
   const handleRowClick = async (record: any, index: any) => {
     console.log('Clicked row:', record, 'at index:', index);
     const idToken = currentUserInfo?.idToken || '';
-    router.push(`/finance`)
+    router.push(`/finance?modelName=${record.modelName}`)
     // Add your logic here
   };
 

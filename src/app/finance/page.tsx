@@ -3,7 +3,7 @@
 import React from 'react';
 import { ReactGrid, Column, Row, CellChange, ChevronCell, CellTemplates } from '@silevis/reactgrid';
 import './financeStyles.css';
-import { PiArrowLeft, PiBrowser, PiChatDots, PiClockDuotone, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiShareFat, PiSquareHalfFill, PiTable } from 'react-icons/pi';
+import { PiArrowLeft, PiBrowser, PiChatDots, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiShareFat, PiSquareHalfFill, PiTable } from 'react-icons/pi';
 import DateFiled from '@/components/controlled-table/date-field';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
@@ -11,6 +11,11 @@ import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import { AdvancedContextMenuHandlingSample, ChevronCellSample, ColumnReorderSample, ColumnResizingSample, ColumnsAndRowsReorderSample, ContextMenuSample, CryptocurrencyMarketSample, CustomStylingSample, FlagCellTemplateSample, GettingStartedSample, GroupIdSample, HandlingChangesSample, HighlightsSample, LimitedHeightByParentSample, NotLimitedHeightByParentSample, ResizeColumnSample, SimpleContextMenuHandlingSample, StickyPanesSample, StickySample } from './samples/samples';
 import { Input } from 'rizzui';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import SimpleLineChart from '../shared/chart-widgets/simple-line-chart';
+import CustomizedDotLineChart from '../shared/chart-widgets/customized-dot-line-chart';
+import SimpleBarChart from '../shared/chart-widgets/simple-bar-chart';
+import MixBarChart from '../shared/chart-widgets/mix-bar-chart';
 
 
 
@@ -197,9 +202,12 @@ const applyChangesToPeople = (changes: any, prevPeople: any) => {
     return [...prevPeople];
 };
 
-const FinancePlan = () => {
+const FinancePlan = ({ searchParams }: any) => {
     const [people, setPeople] = React.useState(getPeople());
     const [columns] = React.useState(getColumns());
+
+    const { modelName } = searchParams;
+    console.log(">>>>>>>>>>>params", searchParams)
 
     const [startDate, setStartDate] = React.useState();
     const [endDate, setEndDate] = React.useState();
@@ -261,38 +269,39 @@ const FinancePlan = () => {
                 </div> */}
                 <div className='flex items-center w-full justify-between'>
                     <div className='flex items-center'>
-                        <div className='text-lg font-medium mr-6 text-[#335015]'>Budget plan 2024</div>
-                        <div className='flex items-center text-[#335015]'>
-                            <PiClockDuotone className='h-6 w-6 text-[#335015]' />
-                            <div className='text-md font-bold '>Monthly, Jan '24 - Dec '24 </div>
+                        <div className='text-lg font-medium mr-12 text-gray-400'>{modelName}</div>
+                        <div className='flex items-center text-gray-400'>
+                            <PiClockLight className='h-6 w-6 text-gray-400' />
+                            <div className='text-md font-medium ml-2'>Monthly,</div>
+                            <div className='text-md font-medium ml-2'>Jan '24 - Dec '24 </div>
                         </div>
                         <Link href='/models' className='flex items-center ml-12'>
-                            <PiLink className='h-6 w-6 text-[#335015]' />
-                            <div className='text-[#335015] font-medium'>Models</div>
+                            <PiLink className='h-6 w-6 text-gray-400' />
+                            <div className='text-gray-400 font-medium'>Models</div>
                         </Link>
                     </div>
 
                     <div className='flex items-center -ml-64'>
                         <div
-                            className={`py-0.5 px-2 flex items-center rounded-md text-white cursor-pointer ${isSpreadsheet ? 'bg-[#669F2A]' : 'bg-[#ACDC79]'}`}
+                            className={`py-0.5 px-2 flex items-center rounded-md text-white cursor-pointer ${isSpreadsheet ? 'bg-[#669F2A]' : 'bg-gray-300'}`}
                             onClick={() => setIsSpreadsheet(true)}
                         >
                             <PiTable className='h-6 w-6 text-white mr-2' />
                             Spreadsheet</div>
                         <div
-                            className={`py-0.5 px-2 ml-4 flex items-center rounded-md text-white cursor-pointer ${isSpreadsheet ? 'bg-[#ACDC79]' : 'bg-[#669F2A]'}`}
+                            className={`py-0.5 px-2 ml-4 flex items-center rounded-md text-white cursor-pointer ${isSpreadsheet ? 'bg-gray-300' : 'bg-[#669F2A]'}`}
                             onClick={() => setIsSpreadsheet(false)}
                         >
                             <PiBrowser className='h-6 w-6 text-white mr-2' />
                             Dashboard</div>
                     </div>
                     <div className='flex items-center'>
-                        <PiSquareHalfFill className='h-6 w-6 text-[#335015] mr-4' />
+                        <PiSquareHalfFill className='h-6 w-6 text-gray-400 mr-4' />
                         <div className='border-r-2 h-[26px]'></div>
-                        <PiDownload className='h-6 w-6 text-[#335015] ml-4' />
-                        <PiChatDots className='h-6 w-6 text-[#335015] ml-4' />
-                        <PiShareFat className='h-6 w-6 text-[#335015] ml-4' />
-                        <PiCopy className='h-6 w-6 text-[#335015] ml-4' />
+                        <PiDownload className='h-6 w-6 text-gray-400 ml-4' />
+                        <PiChatDots className='h-6 w-6 text-gray-400 ml-4' />
+                        <PiShareFat className='h-6 w-6 text-gray-400 ml-4' />
+                        <PiCopy className='h-6 w-6 text-gray-400 ml-4' />
                     </div>
                 </div>
                 {/* <DateFiled
@@ -356,8 +365,11 @@ const FinancePlan = () => {
             {isSpreadsheet ?
                 <ChevronCellSample />
                 :
-                <div className='flex justify-center items-center h-40'>
-                    <div className='text-lg font-bold text-[#335015]'>Development Inprogress</div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 3xl:gap-8 p-6">
+                    <SimpleLineChart />
+                    <CustomizedDotLineChart />
+                    <SimpleBarChart />
+                    <MixBarChart />
                 </div>
             }
 

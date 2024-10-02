@@ -215,6 +215,17 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                 },
             ]
         }
+        if (selectionMode === 'row') {
+            menuOptions = [
+                ...menuOptions,
+                {
+                    id: 'removeRow', label: 'Add row', handler: () => {
+                        addRow();
+                    }
+                },
+            ]
+        }
+
         return menuOptions;
     }
 
@@ -238,7 +249,7 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                 />
             </ReactGridContainer>
             <div className='flex justify-start w-[120px] mt-8 items-center cursor-pointer'>
-                <PiPlus className='h-6 w-6 text-[#335015] ml-4' onClick={addRow} />
+                <PiPlus className='h-6 w-6 text-[#335015]' onClick={addRow} />
                 <div
                     onClick={addRow}
                     className="text-[#335015] ml-2 font-medium"
