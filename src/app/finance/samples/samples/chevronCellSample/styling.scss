@@ -1,7 +1,19 @@
 #chevron-cell-sample {
-    @import '@silevis/reactgrid/styles.scss';
+  @import "@silevis/reactgrid/styles.scss";
 }
 
 .rg-header-cell {
-    // background-color: #66CDAA !important;
+  // background-color: #66CDAA !important;
+}
+
+.chevron {
+  color: #475467;
+}
+
+.rg-celleditor {
+    padding: 0 !important;
+}
+
+.rg-pane-shadow{
+    box-shadow: none !important;
 }

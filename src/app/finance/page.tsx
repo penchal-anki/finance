@@ -3,21 +3,22 @@
 import React from 'react';
 import { ReactGrid, Column, Row, CellChange, ChevronCell, CellTemplates } from '@silevis/reactgrid';
 import './financeStyles.css';
-import { PiArrowLeft, PiBrowser, PiChatDots, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiShareFat, PiSquareHalfFill, PiTable } from 'react-icons/pi';
+import { PiArrowLeft, PiBrowser, PiChatDots, PiChatsCircleBold, PiChatsCircleFill, PiChatsDuotone, PiClockCounterClockwise, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiPresentationChart, PiPresentationChartLight, PiShareFat, PiSquareHalfFill, PiTable, PiTableFill } from 'react-icons/pi';
 import DateFiled from '@/components/controlled-table/date-field';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import { AdvancedContextMenuHandlingSample, ChevronCellSample, ColumnReorderSample, ColumnResizingSample, ColumnsAndRowsReorderSample, ContextMenuSample, CryptocurrencyMarketSample, CustomStylingSample, FlagCellTemplateSample, GettingStartedSample, GroupIdSample, HandlingChangesSample, HighlightsSample, LimitedHeightByParentSample, NotLimitedHeightByParentSample, ResizeColumnSample, SimpleContextMenuHandlingSample, StickyPanesSample, StickySample } from './samples/samples';
-import { Input } from 'rizzui';
+import { Input, Tooltip } from 'rizzui';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SimpleLineChart from '../shared/chart-widgets/simple-line-chart';
 import CustomizedDotLineChart from '../shared/chart-widgets/customized-dot-line-chart';
 import SimpleBarChart from '../shared/chart-widgets/simple-bar-chart';
 import MixBarChart from '../shared/chart-widgets/mix-bar-chart';
-
-
+import rightIcon from '@public/manage/rightArrow.png'
+import homeIcon from '@public/manage/homeIcon.png';
+import Image from 'next/image';
 
 // export * from './stickySample/StickySample';
 // export * from './resizeColumnSample/ResizeColumnSample';
@@ -260,8 +261,8 @@ const FinancePlan = ({ searchParams }: any) => {
 
 
     return (
-        <div className='p-2'>
-            <div className='flex items-center pb-[8px]'>
+        <div className='px-2'>
+            <div className='flex items-center h-[72px]'>
                 {/* <div className='flex cursor-pointer mr-4'
                     onClick={() => window.history.back()}
                 >
@@ -269,18 +270,24 @@ const FinancePlan = ({ searchParams }: any) => {
                 </div> */}
                 <div className='flex items-center w-full justify-between'>
                     <div className='flex items-center'>
+                        <Image src={homeIcon} alt="logo" className='w-4 h-4' />
+                        <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
+                        <Link href='/models'>
+                            <div className='text-lg font-medium text-[#669F2A]'>Models</div>
+                        </Link>
+                        <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
                         <div className='text-lg font-medium mr-12 text-gray-400'>{modelName}</div>
-                        <div className='flex items-center text-gray-400'>
+                        {/* <div className='flex items-center text-gray-400'>
                             <PiClockLight className='h-6 w-6 text-gray-400' />
                             <div className='text-md font-medium ml-2'>Monthly,</div>
                             <div className='text-md font-medium ml-2'>Jan '24 - Dec '24 </div>
-                        </div>
-                        <Link href='/models' className='flex items-center ml-12'>
+                        </div> */}
+                        {/* <Link href='/models' className='flex items-center ml-12'>
                             <PiLink className='h-6 w-6 text-gray-400' />
                             <div className='text-gray-400 font-medium'>Models</div>
-                        </Link>
+                        </Link> */}
                     </div>
-
+                    {/* 
                     <div className='flex items-center -ml-64'>
                         <div
                             className={`py-0.5 px-2 flex items-center rounded-md text-white cursor-pointer ${isSpreadsheet ? 'bg-[#669F2A]' : 'bg-gray-300'}`}
@@ -294,14 +301,88 @@ const FinancePlan = ({ searchParams }: any) => {
                         >
                             <PiBrowser className='h-6 w-6 text-white mr-2' />
                             Dashboard</div>
-                    </div>
+                    </div> */}
                     <div className='flex items-center'>
-                        <PiSquareHalfFill className='h-6 w-6 text-gray-400 mr-4' />
-                        <div className='border-r-2 h-[26px]'></div>
-                        <PiDownload className='h-6 w-6 text-gray-400 ml-4' />
-                        <PiChatDots className='h-6 w-6 text-gray-400 ml-4' />
-                        <PiShareFat className='h-6 w-6 text-gray-400 ml-4' />
-                        <PiCopy className='h-6 w-6 text-gray-400 ml-4' />
+                        <div className='flex items-center text-gray-400'>
+                            <PiClockLight className='h-4 w-4 text-gray-400' />
+                            <div className='text-md font-medium ml-2'>Monthly,</div>
+                            <div className='text-md font-medium ml-2'>Jan '24 - Dec '24 </div>
+                        </div>
+                        {/* <PiSquareHalfFill className='h-6 w-6 text-gray-400 mr-4' /> */}
+                        <div className='border-r-2 h-[26px] ml-4'></div>
+                        <Tooltip
+                            size="sm"
+                            content={'Export'}
+                            placement="left-start"
+                            color="invert"
+                            className='bg-white cursor-pointer z-[50]'
+                            showArrow={false}
+                        >
+                            <button>
+                                <PiDownload className='h-6 w-6 text-gray-400 ml-4 cursor-pointer' />
+                            </button>
+                        </Tooltip>
+                        <Tooltip
+                            size="sm"
+                            content={'Comments'}
+                            placement="left-start"
+                            color="invert"
+                            className='bg-white cursor-pointer z-[50]'
+                            showArrow={false}
+                        >
+                            <button>
+                                <PiChatsDuotone className='h-6 w-6 text-gray-400 ml-4' />
+                            </button>
+                        </Tooltip>
+                        <Tooltip
+                            size="sm"
+                            content={'Clone'}
+                            placement="left-start"
+                            color="invert"
+                            className='bg-white cursor-pointer z-[50]'
+                            showArrow={false}
+                        >
+                            <button>
+                                <PiCopy className='h-6 w-6 text-gray-400 ml-4' />
+                            </button>
+                        </Tooltip>
+
+                        {/* <PiClockCounterClockwise  className='h-6 w-6 text-gray-400 ml-4' /> */}
+                        {/* <PiCopy className='h-6 w-6 text-gray-400 ml-4' /> */}
+                        <div className='border-r-2 h-[26px] mx-4'></div>
+
+                        <div className='flex items-center'>
+                            <Tooltip
+                                size="sm"
+                                content={'Table'}
+                                placement="left-start"
+                                color="invert"
+                                className='bg-white cursor-pointer z-[50]'
+                                showArrow={false}
+                            >
+                                <button>
+                                    <PiTable
+                                        className={`h-6 w-6 mr-2 ${isSpreadsheet ? 'text-[#669F2A]' : 'text-gray-400'}`}
+                                        onClick={() => setIsSpreadsheet(true)}
+                                    />
+                                </button>
+                            </Tooltip>
+                            <Tooltip
+                                size="sm"
+                                content={'Dashboard'}
+                                placement="left-start"
+                                color="invert"
+                                className='bg-white cursor-pointer z-[50]'
+                                showArrow={false}
+                            >
+                                <button>
+                                    <PiPresentationChart
+                                        className={`h-6 w-6 ${isSpreadsheet ? 'text-gray-400' : 'text-[#669F2A]'}`}
+                                        onClick={() => setIsSpreadsheet(false)}
+                                    />
+                                </button>
+                            </Tooltip>
+                        </div>
                     </div>
                 </div>
                 {/* <DateFiled
@@ -324,18 +405,9 @@ const FinancePlan = ({ searchParams }: any) => {
                 /> */}
 
             </div>
-            <div className='flex items-center border-t-2'>
-                {/* <div className='h-12 flex items-center'>
-                    <PiMagnifyingGlass className='h-6 w-6 text-gray-400' />
-                    <Input
-                        label=""
-                        placeholder="Search Variables"
-                        variant="text"
-                        className='outline-none !ring-0 !border-0'
-                        inputClassName='!border-0 !ring-0 text-[16px]'
-                    />
-                </div> */}
-            </div>
+            {/* <div className='flex items-center border-t-2'>
+            
+            </div> */}
             {/* <div className='flex'>
                 <ReactGrid
                     rows={rows}

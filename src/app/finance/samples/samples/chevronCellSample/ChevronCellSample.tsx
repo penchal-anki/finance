@@ -179,7 +179,7 @@ export const ChevronCellSample: React.FunctionComponent = () => {
             height: 40,
             reorderable: true,
             cells: [
-                { type: 'chevron', text: ``, isExpanded: true },
+                { type: 'chevron', text: ``, isExpanded: false, parentId:6 },
                 { type: 'text', text: '' },
                 { type: 'text', text: '' },
                 { type: 'text', text: '' },
@@ -248,13 +248,13 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                     onContextMenu={handleContextMenu}
                 />
             </ReactGridContainer>
-            <div className='flex justify-start w-[120px] mt-8 items-center cursor-pointer'>
+            {/* <div className='flex justify-start w-[120px] mt-8 items-center cursor-pointer'>
                 <PiPlus className='h-6 w-6 text-[#335015]' onClick={addRow} />
                 <div
                     onClick={addRow}
                     className="text-[#335015] ml-2 font-medium"
                 >Add Row</div>
-            </div>
+            </div> */}
         </div>
 
     )
