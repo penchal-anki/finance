@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import styled from 'styled-components';
 import { ReactGrid, CellChange, Column, Id, Row, DropPosition, DefaultCellTypes } from '@silevis/reactgrid';

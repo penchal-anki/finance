@@ -1,4 +1,5 @@
-import { GettingStartedSample } from '@/app/finance/samples/samples';
+'use client'
+import GettingStartedSample from '@/app/finance/samples/samples/gettingStartedSample/GettingStartedSample';
 import { Button } from '@/components/ui/button';
 import React from 'react';
 

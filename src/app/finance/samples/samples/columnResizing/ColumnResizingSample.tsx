@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react";
 import { ReactGrid, Column, Row, Id } from "@silevis/reactgrid";
 import "./styling.scss";

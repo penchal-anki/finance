@@ -60,7 +60,7 @@ const data = [
   },
 ];
 
-export default function SimpleBarChart({ className }: { className?: string }) {
+function SimpleBarChart({ className }: { className?: string }) {
   const isMediumScreen = useMedia('(max-width: 1200px)', false);
   return (
     <WidgetCard title={'Simple Bar Chart'} className={className}>
@@ -78,7 +78,7 @@ export default function SimpleBarChart({ className }: { className?: string }) {
             <XAxis tickLine={false} dataKey="name" />
             <YAxis tickLine={false} />
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
+            {/* <Legend /> */}
             <Bar dataKey="pv" fill="#5a5fd7" shape={<RoundedTopBarFill />} />
             <Bar dataKey="uv" fill="#10b981" shape={<RoundedTopBarFill />} />
           </BarChart>
@@ -87,3 +87,5 @@ export default function SimpleBarChart({ className }: { className?: string }) {
     </WidgetCard>
   );
 }
+
+export default SimpleBarChart;

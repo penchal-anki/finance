@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import { ReactGrid, Column, Row, DefaultCellTypes } from '@silevis/reactgrid';
 import { RateCellTemplate, RateCell } from '../../cell-templates/rateCell/RateCellTemplate';

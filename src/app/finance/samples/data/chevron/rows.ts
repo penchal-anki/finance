@@ -7,7 +7,7 @@ export const headerRow: Row = {
   reorderable: false,
   height,
   cells: [
-    { type: 'header', text: `` },
+    { type: 'header', text: `Labels` },
     { type: 'header', text: `Formula` },
     // { type: 'header', text: `Branch Name` },
     // { type: 'header', text: `Commit hash` },

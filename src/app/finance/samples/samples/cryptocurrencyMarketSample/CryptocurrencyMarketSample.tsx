@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactGrid, Column, Id, Row, DefaultCellTypes } from '@silevis/reactgrid';
 import styled from 'styled-components';

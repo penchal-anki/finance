@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React from 'react';
 import { ReactGrid, Column, Row, CellChange, ChevronCell, CellTemplates } from '@silevis/reactgrid';
@@ -8,7 +8,7 @@ import DateFiled from '@/components/controlled-table/date-field';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
-import { AdvancedContextMenuHandlingSample, ChevronCellSample, ColumnReorderSample, ColumnResizingSample, ColumnsAndRowsReorderSample, ContextMenuSample, CryptocurrencyMarketSample, CustomStylingSample, FlagCellTemplateSample, GettingStartedSample, GroupIdSample, HandlingChangesSample, HighlightsSample, LimitedHeightByParentSample, NotLimitedHeightByParentSample, ResizeColumnSample, SimpleContextMenuHandlingSample, StickyPanesSample, StickySample } from './samples/samples';
+import { ChevronCellSample, } from './samples/samples';
 import { Input, Tooltip } from 'rizzui';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -20,6 +20,7 @@ import rightIcon from '@public/manage/rightArrow.png'
 import homeIcon from '@public/manage/homeIcon.png';
 import cloclIcon from '@public/manage/clock.png';
 import Image from 'next/image';
+import SimpleAreaChart from '../shared/chart-widgets/simple-area-chart';
 
 // export * from './stickySample/StickySample';
 // export * from './resizeColumnSample/ResizeColumnSample';
@@ -274,10 +275,10 @@ const FinancePlan = ({ searchParams }: any) => {
                         <Image src={homeIcon} alt="logo" className='w-4 h-4' />
                         <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
                         <Link href='/models'>
-                            <div className='text-lg font-medium text-gray-400 hover:text-[#669F2A]'>Models</div>
+                            <div className='text-md font-medium text-gray-400 hover:text-[#669F2A]'>Models</div>
                         </Link>
                         <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
-                        <div className='text-lg font-medium mr-12 text-[#669F2A]'>{modelName}</div>
+                        <div className='text-md font-medium mr-12 text-[#669F2A]'>{modelName}</div>
                         {/* <div className='flex items-center text-gray-400'>
                             <PiClockLight className='h-6 w-6 text-gray-400' />
                             <div className='text-md font-medium ml-2'>Monthly,</div>
@@ -439,15 +440,13 @@ const FinancePlan = ({ searchParams }: any) => {
                 <ChevronCellSample />
                 :
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 3xl:gap-8 p-6">
-                    <SimpleLineChart />
-                    <CustomizedDotLineChart />
+                    <SimpleAreaChart />
                     <SimpleBarChart />
-                    <MixBarChart />
                 </div>
             }
 
-            {/* <ContextMenuSample />
-            <GettingStartedSample />
+            {/* <ContextMenuSample /> */}
+            {/* <GettingStartedSample />
             <FlagCellTemplateSample />
             <CustomStylingSample />
             <HighlightsSample />
@@ -456,10 +455,10 @@ const FinancePlan = ({ searchParams }: any) => {
             <StickyPanesSample />
             <ColumnsAndRowsReorderSample />
             <ColumnResizingSample />
-            <HandlingChangesSample />
-            <LimitedHeightByParentSample />
-            <NotLimitedHeightByParentSample />
-            <GroupIdSample /> */}
+            <HandlingChangesSample /> */}
+            {/* <LimitedHeightByParentSample />
+            <NotLimitedHeightByParentSample /> */}
+            {/* <GroupIdSample /> */}
         </div>
     );
 }

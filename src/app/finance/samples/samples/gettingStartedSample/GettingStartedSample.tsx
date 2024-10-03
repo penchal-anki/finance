@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import { ReactGrid, Column, Row } from "@silevis/reactgrid";
 import "@silevis/reactgrid/styles.css";
@@ -24,7 +25,7 @@ const headerRow: Row = {
 
 const getRows = (people: any): Row[] => [
     // headerRow,
-    ...people.map((person: { name: any; surname: any; }, idx: any) => ({
+    ...people?.map((person: { name: any; surname: any; }, idx: any) => ({
         rowId: idx,
         height: 40,
         cells: [
@@ -50,8 +51,8 @@ const applyChangesToPeople = (
 
 
 
-export const GettingStartedSample = ({ listRows }: any) => {
-    const [people, setPeople] = useState<any>(listRows);
+ const GettingStartedSample = ({ listRows }: any) => {
+    const [people, setPeople] = useState<any>(listRows || []);
 
     const rows = getRows(people);
     const columns = getColumns();
@@ -86,3 +87,6 @@ export const GettingStartedSample = ({ listRows }: any) => {
     );
 
 }
+
+
+export default GettingStartedSample;

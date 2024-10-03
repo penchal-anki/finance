@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { columns as dataColumns } from '../../data/chevron/columns';
@@ -6,6 +7,7 @@ import { CellChange, Column, ChevronCell, ReactGrid, Row, Id, DropPosition, Menu
 import './styling.scss';
 import { Button } from '@/components/ui/button';
 import { PiPlus } from 'react-icons/pi';
+import { ChevronCellTemplate } from './CustomChevron';
 
 const ReactGridContainer = styled.div`
 overflow: auto;
@@ -241,7 +243,10 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                     canReorderRows={handleCanReorderRows}
                     stickyLeftColumns={2}
                     stickyTopRows={1}
-                    enableRowSelection
+                    customCellTemplates={{
+                        'chevron': new ChevronCellTemplate(),
+                      }}
+                    // enableRowSelection
                     enableColumnSelection
                     enableFillHandle
                     enableRangeSelection
