@@ -1,9 +1,9 @@
+import { GettingStartedSample } from '@/app/finance/samples/samples';
 import { Button } from '@/components/ui/button';
 import React from 'react';
 
 const CategoryInfo = (props: any) => {
     const { record } = props;
-
     return (
         <div className='w-full p-4'>
             <div className='text-lg font-medium'>
@@ -12,7 +12,7 @@ const CategoryInfo = (props: any) => {
             <span className='text-sm'>
                 {record?.categoryDescription}
             </span>
-            <div className="relative flex w-96 flex-col rounded-lg border border-slate-200 bg-white shadow-sm mt-8">
+            {/* <div className="relative flex w-96 flex-col rounded-lg border border-slate-200 bg-white shadow-sm mt-8">
                 <nav className="flex min-w-[240px] flex-col gap-1 p-1.5">
                     {record.categoryListValues?.map((info: any, index: any) => (
                         <div key={info.name}>
@@ -34,18 +34,13 @@ const CategoryInfo = (props: any) => {
                         </div>
                     ))}
                 </nav>
+            </div> */}
+            <div className='mt-8'>
+                <GettingStartedSample
+                    listRows={record.categoryListValues}
+                />
             </div>
-            <div className='flex mt-20'>
-                <div>
-                    <Button
-                        type="submit"
-                        color="info"
-                        buttonStyles="h-10 !text-sm"
-                    >
-                        Add Item
-                    </Button>
-                </div>
-            </div>
+
         </div>
     )
 };

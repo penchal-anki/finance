@@ -38,7 +38,7 @@ export const rows = (reorderable: boolean) => {
       height,
       reorderable,
       cells: [
-        { type: 'chevron', text: rowString.toString(), isExpanded: true },
+        { type: 'chevron', text: '', isExpanded: true },
         { type: 'text', text: '' },
         { type: 'text', text: '' },
         { type: 'text', text: '' },

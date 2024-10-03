@@ -101,7 +101,8 @@ export const CustomStylingSample: React.FunctionComponent = () => {
                 style={{ position: "relative", height: 250 }}
                 id="reactgrid-gold"
             >
-                <ReactGrid rows={state.rows}
+                <ReactGrid
+                    rows={state.rows}
                     columns={state.columns}
                     enableFillHandle
                     enableRangeSelection

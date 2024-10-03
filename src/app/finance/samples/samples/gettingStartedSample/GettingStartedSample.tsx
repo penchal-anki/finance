@@ -1,46 +1,88 @@
-import * as React from "react";
+import { useState } from "react";
 import { ReactGrid, Column, Row } from "@silevis/reactgrid";
 import "@silevis/reactgrid/styles.css";
+import { PiPlus } from "react-icons/pi";
+import './styling.scss';
 
-interface IApp {
-    columns: Column[];
-    rows: Row[];
-}
+const getPeople = (): any => [
+    { name: "Thomas" },
+    { name: "Susie" },
+    { name: "", }
+];
 
-export const GettingStartedSample: React.FunctionComponent = () => {
-    const [state] = React.useState<IApp>(() => ({
-        columns: [
-            { columnId: "Name", width: 100 },
-            { columnId: "Surname", width: 100 }
-        ],
-        rows: [
-            {
-                rowId: 0,
-                cells: [
-                    { type: "header", text: "Name" },
-                    { type: "header", text: "Surname" }
-                ]
-            },
-            {
-                rowId: 1,
-                cells: [
-                    { type: "text", text: "Thomas" },
-                    { type: "text", text: "Goldman" }
-                ]
-            },
-            {
-                rowId: 2,
-                cells: [
-                    { type: "text", text: "Susie" },
-                    { type: "text", text: "Spencer" }
-                ]
-            },
-            {
-                rowId: 3,
-                cells: [{ type: "text", text: "" }, { type: "text", text: "" }]
-            }
+const getColumns = (): Column[] => [
+    { columnId: "name", width: 384 },
+];
+
+const headerRow: Row = {
+    rowId: "header",
+    height: 40,
+    cells: [
+        { type: "header", text: "Name" },
+    ]
+};
+
+const getRows = (people: any): Row[] => [
+    // headerRow,
+    ...people.map((person: { name: any; surname: any; }, idx: any) => ({
+        rowId: idx,
+        height: 40,
+        cells: [
+            { type: "text", text: person.name },
         ]
-    }));
+    }))
+];
 
-    return <ReactGrid rows={state.rows} columns={state.columns} />;
+const applyChangesToPeople = (
+    changes: any,
+    prevPeople: any
+): any => {
+    changes.forEach((change: any) => {
+        if (change.newCell.type === 'text') {
+            const personIndex = change.rowId;
+            const fieldName = change.columnId;
+            prevPeople[personIndex][fieldName] = change.newCell.text;
+        }
+    });
+    return [...prevPeople];
+};
+
+
+
+
+export const GettingStartedSample = ({ listRows }: any) => {
+    const [people, setPeople] = useState<any>(listRows);
+
+    const rows = getRows(people);
+    const columns = getColumns();
+
+    const handleChanges = (changes: any) => {
+        setPeople((prevPeople: any) => applyChangesToPeople(changes, prevPeople));
+    };
+
+    const addRow = () => {
+        const newPeople = [...people];
+        newPeople.push({ name: "", surname: "" });
+        setPeople(newPeople);
+    }
+
+
+    return (
+        <div id="reactgrid-primary">
+            <ReactGrid
+                rows={rows}
+                columns={columns}
+                onCellsChanged={handleChanges}
+
+            />
+            <div className='flex justify-start w-[120px] mt-4 items-center cursor-pointer'>
+                <PiPlus className='h-6 w-6 text-[#335015]' onClick={addRow} />
+                <div
+                    onClick={addRow}
+                    className="text-[#335015] ml-2 font-medium"
+                >Add Item</div>
+            </div>
+        </div>
+    );
+
 }

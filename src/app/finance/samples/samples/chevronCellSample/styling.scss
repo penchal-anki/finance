@@ -1,4 +1,5 @@
 #chevron-cell-sample {
+  $primary-color: rgb(102, 159, 42);
   @import "@silevis/reactgrid/styles.scss";
 }
 
@@ -17,3 +18,9 @@
 .rg-pane-shadow{
     box-shadow: none !important;
 }
+
+
+// #reactgrid-primary {
+//   $primary-color: rgb(102, 159, 42);
+//   @import '@silevis/reactgrid/styles.scss';
+// }

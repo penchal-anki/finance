@@ -3,7 +3,7 @@
 import React from 'react';
 import { ReactGrid, Column, Row, CellChange, ChevronCell, CellTemplates } from '@silevis/reactgrid';
 import './financeStyles.css';
-import { PiArrowLeft, PiBrowser, PiChatDots, PiChatsCircleBold, PiChatsCircleFill, PiChatsDuotone, PiClockCounterClockwise, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiPresentationChart, PiPresentationChartLight, PiShareFat, PiSquareHalfFill, PiTable, PiTableFill } from 'react-icons/pi';
+import { PiArrowLeft, PiBrowser, PiChatCircleText, PiChatDots, PiChatsCircleBold, PiChatsCircleFill, PiChatsDuotone, PiClockCounterClockwise, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiPresentationChart, PiPresentationChartLight, PiShareFat, PiSquareHalfFill, PiTable, PiTableFill } from 'react-icons/pi';
 import DateFiled from '@/components/controlled-table/date-field';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
@@ -18,6 +18,7 @@ import SimpleBarChart from '../shared/chart-widgets/simple-bar-chart';
 import MixBarChart from '../shared/chart-widgets/mix-bar-chart';
 import rightIcon from '@public/manage/rightArrow.png'
 import homeIcon from '@public/manage/homeIcon.png';
+import cloclIcon from '@public/manage/clock.png';
 import Image from 'next/image';
 
 // export * from './stickySample/StickySample';
@@ -273,10 +274,10 @@ const FinancePlan = ({ searchParams }: any) => {
                         <Image src={homeIcon} alt="logo" className='w-4 h-4' />
                         <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
                         <Link href='/models'>
-                            <div className='text-lg font-medium text-[#669F2A]'>Models</div>
+                            <div className='text-lg font-medium text-gray-400 hover:text-[#669F2A]'>Models</div>
                         </Link>
                         <Image src={rightIcon} alt="logo" className='w-[8px] mx-4' />
-                        <div className='text-lg font-medium mr-12 text-gray-400'>{modelName}</div>
+                        <div className='text-lg font-medium mr-12 text-[#669F2A]'>{modelName}</div>
                         {/* <div className='flex items-center text-gray-400'>
                             <PiClockLight className='h-6 w-6 text-gray-400' />
                             <div className='text-md font-medium ml-2'>Monthly,</div>
@@ -304,7 +305,7 @@ const FinancePlan = ({ searchParams }: any) => {
                     </div> */}
                     <div className='flex items-center'>
                         <div className='flex items-center text-gray-400'>
-                            <PiClockLight className='h-4 w-4 text-gray-400' />
+                            <Image src={cloclIcon} className='h-4 w-4 text-gray-400' alt="clock" />
                             <div className='text-md font-medium ml-2'>Monthly,</div>
                             <div className='text-md font-medium ml-2'>Jan '24 - Dec '24 </div>
                         </div>
@@ -331,7 +332,7 @@ const FinancePlan = ({ searchParams }: any) => {
                             showArrow={false}
                         >
                             <button>
-                                <PiChatsDuotone className='h-6 w-6 text-gray-400 ml-4' />
+                                <PiChatCircleText  className='h-6 w-6 text-gray-400 ml-4' />
                             </button>
                         </Tooltip>
                         <Tooltip
@@ -444,7 +445,6 @@ const FinancePlan = ({ searchParams }: any) => {
                     <MixBarChart />
                 </div>
             }
-
 
             {/* <ContextMenuSample />
             <GettingStartedSample />
