@@ -22,11 +22,11 @@ const Button = ({ children, buttonStyles, ...props }: any) => {
       rounded-md
       border border-transparent
       focus-visible:ring-offset-2
-      hover:enabled:bg-[#2B4212]
+      hover:enabled:bg-[#669F2A]
       focus-visible:ring-blue/30
     text-white
       w-full h-11 text-base
-      bg-[#2B4212]
+      bg-[#669F2A]
       ${buttonStyles}
       `}
       {...props}

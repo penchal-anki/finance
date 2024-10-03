@@ -15,6 +15,9 @@ export const headerRow: Row = {
     // { type: 'header', text: `Removed` },
     // { type: 'header', text: `Author` },
     // { type: 'header', text: `Date` },
+    { type: "header", text: "Oct" },
+    { type: "header", text: "Nov" },
+    { type: "header", text: "Dec" },
     { type: "header", text: "Jan" },
     { type: "header", text: "Feb" },
     { type: "header", text: "Mar" },
@@ -24,9 +27,6 @@ export const headerRow: Row = {
     { type: "header", text: "Jul" },
     { type: "header", text: "Aug" },
     { type: "header", text: "Sep" },
-    { type: "header", text: "Oct" },
-    { type: "header", text: "Nov" },
-    { type: "header", text: "Dec" }
   ]
 };
 

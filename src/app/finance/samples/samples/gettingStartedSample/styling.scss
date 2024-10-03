@@ -36,3 +36,7 @@
     $primary-color: rgb(102, 159, 42);
     @import '@silevis/reactgrid/styles.scss';
   }
+
+  .rg-celleditor {
+    padding: 0 !important;
+}

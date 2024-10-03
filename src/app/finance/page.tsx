@@ -108,6 +108,9 @@ const getPeople = () => [
 const getColumns = () => [
     { columnId: "name", width: 150 },
     { columnId: "surname", width: 150 },
+    { columnId: "oct", width: 100 },
+    { columnId: "nov", width: 100 },
+    { columnId: "dec", width: 100 },
     { columnId: "jan", width: 100 },
     { columnId: "feb", width: 100 },
     { columnId: "mar", width: 100 },
@@ -117,9 +120,6 @@ const getColumns = () => [
     { columnId: "jul", width: 100 },
     { columnId: "aug", width: 100 },
     { columnId: "sep", width: 100 },
-    { columnId: "oct", width: 100 },
-    { columnId: "nov", width: 100 },
-    { columnId: "dec", width: 100 }
 ];
 
 const headerRow = {
@@ -127,6 +127,9 @@ const headerRow = {
     cells: [
         { type: "header", text: "Name" },
         { type: "header", text: "Surname" },
+        { type: "header", text: "Oct" },
+        { type: "header", text: "Nov" },
+        { type: "header", text: "Dec" },
         { type: "header", text: "Jan" },
         { type: "header", text: "Feb" },
         { type: "header", text: "Mar" },
@@ -135,10 +138,7 @@ const headerRow = {
         { type: "header", text: "Jun" },
         { type: "header", text: "Jul" },
         { type: "header", text: "Aug" },
-        { type: "header", text: "Sep" },
-        { type: "header", text: "Oct" },
-        { type: "header", text: "Nov" },
-        { type: "header", text: "Dec" }
+        { type: "header", text: "Sep" }
     ]
 };
 
@@ -308,7 +308,7 @@ const FinancePlan = ({ searchParams }: any) => {
                         <div className='flex items-center text-gray-400'>
                             <Image src={cloclIcon} className='h-4 w-4 text-gray-400' alt="clock" />
                             <div className='text-md font-medium ml-2'>Monthly,</div>
-                            <div className='text-md font-medium ml-2'>Jan '24 - Dec '24 </div>
+                            <div className='text-md font-medium ml-2'>Oct '24 - Sep '25 </div>
                         </div>
                         {/* <PiSquareHalfFill className='h-6 w-6 text-gray-400 mr-4' /> */}
                         <div className='border-r-2 h-[26px] ml-4'></div>

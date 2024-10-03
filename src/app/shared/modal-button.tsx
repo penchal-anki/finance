@@ -22,7 +22,7 @@ export default function ModalButton({
   ...rest
 }: ModalButtonProps) {
   const { openModal } = useModal();
-  const buttonStyle = `mt-5 w-full text-xs capitalize lg:w-auto bg-[#2B4212] text-white dark:active:bg-gray-100 sm:text-sm lg:mt-0 ${disabled ? '!bg-gray-100' : '!bg-[#2B4212]'}`
+  const buttonStyle = `mt-5 w-full text-xs capitalize lg:w-auto bg-[#669F2A] text-white dark:active:bg-gray-100 sm:text-sm lg:mt-0 ${disabled ? '!bg-gray-100' : '!bg-[#669F2A]'}`
 
   return (
     <div>
