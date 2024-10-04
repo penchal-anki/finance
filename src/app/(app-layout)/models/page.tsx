@@ -7,6 +7,7 @@ import { getModelsData } from './action';
 import { Loader } from 'rizzui';
 import ModelsTable from './list-data/table';
 import dynamic from 'next/dynamic';
+import { setContextApiData } from '@/utils/form-utils';
 
 
 const AddNewModelElement = dynamic(
@@ -80,10 +81,14 @@ export default function Models() {
             accessToken: currentUserInfo?.accessToken,
             queryString: queryString || ''
         });
-        setModelsList(modelsListInfo);
+
+        const cachedModelsList = appContextData?.modelsListInfo || [];
+        setModelsList(cachedModelsList?.length > 0 ? cachedModelsList : modelsListInfo);
         setIsFirstTimeLoad(true)
         setIsDataLoading(false)
-
+        if (cachedModelsList?.length === 0) {
+            setContextApiData(setAppContextData, { modelsListInfo })
+        }
         return modelsListInfo;
     }
 
@@ -99,11 +104,12 @@ export default function Models() {
         setModelsList((prev: any) => {
             return [...prev, info]
         })
+        setContextApiData(setAppContextData, { modelsListInfo: [...modelsList, info] })
         setIsDataLoading(false)
     }
 
 
-    console.log('modelsList>>>>>>>>>>', modelsList)
+    console.log('modelsList>>>>>>>>>>', appContextData)
     return (
         <div>
             <div className='flex justify-between'>

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { ReactGrid, Column, Row, CellChange, ChevronCell, CellTemplates } from '@silevis/reactgrid';
 import './financeStyles.css';
 import { PiArrowLeft, PiBrowser, PiChatCircleText, PiChatDots, PiChatsCircleBold, PiChatsCircleFill, PiChatsDuotone, PiClockCounterClockwise, PiClockDuotone, PiClockLight, PiCopy, PiDownload, PiLink, PiMagnifyingGlass, PiPresentationChart, PiPresentationChartLight, PiShareFat, PiSquareHalfFill, PiTable, PiTableFill } from 'react-icons/pi';
@@ -21,6 +21,7 @@ import homeIcon from '@public/manage/homeIcon.png';
 import cloclIcon from '@public/manage/clock.png';
 import Image from 'next/image';
 import SimpleAreaChart from '../shared/chart-widgets/simple-area-chart';
+import { useAppContext } from '../root-lib';
 
 // export * from './stickySample/StickySample';
 // export * from './resizeColumnSample/ResizeColumnSample';
@@ -206,14 +207,26 @@ const applyChangesToPeople = (changes: any, prevPeople: any) => {
 };
 
 const FinancePlan = ({ searchParams }: any) => {
+    const { appContextData, setAppContextData }: any = useAppContext()
+    const [modelName, setModelName] = useState('');
+
     const [people, setPeople] = React.useState(getPeople());
     const [columns] = React.useState(getColumns());
-
-    const { modelName } = searchParams;
+    const [selectedModelInfo, setSelectedModelInfo] = useState<any>({})
+    const { modelId } = searchParams;
     console.log(">>>>>>>>>>>params", searchParams)
 
     const [startDate, setStartDate] = React.useState();
     const [endDate, setEndDate] = React.useState();
+
+    useEffect(() => {
+        const modelsListInfo = appContextData.modelsListInfo;
+        if (modelsListInfo?.length > 0) {
+            const model = modelsListInfo.find((model: any) => model.id === modelId);
+            setModelName(model.modelName);
+            setSelectedModelInfo(model);
+        }
+    }, [searchParams])
 
     const rows: any = getRows(people);
 
@@ -333,7 +346,7 @@ const FinancePlan = ({ searchParams }: any) => {
                             showArrow={false}
                         >
                             <button>
-                                <PiChatCircleText  className='h-6 w-6 text-gray-400 ml-4' />
+                                <PiChatCircleText className='h-6 w-6 text-gray-400 ml-4' />
                             </button>
                         </Tooltip>
                         <Tooltip
@@ -437,7 +450,11 @@ const FinancePlan = ({ searchParams }: any) => {
             {/* <CryptocurrencyMarketSample /> */}
 
             {isSpreadsheet ?
-                <ChevronCellSample />
+                modelId &&
+                <ChevronCellSample
+                    modelId={modelId}
+                    selectedModelInfo={selectedModelInfo}
+                />
                 :
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 3xl:gap-8 p-6">
                     <SimpleAreaChart />

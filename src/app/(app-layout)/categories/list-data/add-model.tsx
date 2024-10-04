@@ -50,6 +50,7 @@ const AddKeyFrom = ({ onAddKeySubmit }: any) => {
             categoryDescription: data?.categoryDescription?.trim(),
             createtedAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
+            id: Math.random().toString(36).slice(2, 11),
         }
         setLoading(true)
         onAddKeySubmit(formData)

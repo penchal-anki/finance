@@ -28,7 +28,8 @@ export const sampleJsonCategories = [
                 "email": "michael.green@example.com",
                 "salary": 90000
             }
-        ]
+        ],
+        id: '2001'
     },
     {
         "categoryDescription": "List of management department employees",
@@ -54,7 +55,8 @@ export const sampleJsonCategories = [
                 "email": "sara.white@example.com",
                 "salary": 72000
             }
-        ]
+        ],
+        id: '2002'
     },
     {
         "categoryDescription": "List of design department employees",
@@ -71,7 +73,8 @@ export const sampleJsonCategories = [
                 "email": "mark.johnson@example.com",
                 "salary": 70000
             }
-        ]
+        ],
+        id: "2003"
     },
     {
         "categoryDescription": "List of data science department employees",
@@ -88,7 +91,8 @@ export const sampleJsonCategories = [
                 "email": "lisa.brown@example.com",
                 "salary": 78000
             }
-        ]
+        ],
+        id: '2004'
     }
 ]
 

@@ -7,6 +7,7 @@ import { getModelsData } from './action';
 import { Loader } from 'rizzui';
 import ModelsTable from './list-data/table';
 import dynamic from 'next/dynamic';
+import { setContextApiData } from '@/utils/form-utils';
 const AddNewModelElement = dynamic(
     () => import('./list-data/add-model'),
     { ssr: false }
@@ -73,16 +74,23 @@ export default function Models() {
     const refetchModelsData = async (queryString?: any) => {
         const accountId = currentUserInfo?.idToken || '';
         setIsDataLoading(true)
-        const modelsListInfo: any = await getModelsData({
+        const categoryListInfo: any = await getModelsData({
             idToken: accountId,
             accessToken: currentUserInfo?.accessToken,
             queryString: queryString || ''
         });
-        setCategories(modelsListInfo);
+
+        const cacheCategoryList = appContextData?.categoryListInfo || [];
+        setCategories(cacheCategoryList?.length > 0 ? cacheCategoryList : categoryListInfo);
+
         setIsFirstTimeLoad(true)
         setIsDataLoading(false)
 
-        return modelsListInfo;
+        if (cacheCategoryList?.length === 0) {
+            setContextApiData(setAppContextData, { categoryListInfo })
+        }
+
+        return categoryListInfo;
     }
 
     useEffect(() => {
@@ -97,6 +105,7 @@ export default function Models() {
         setCategories((prev: any) => {
             return [...prev, info]
         })
+        setContextApiData(setAppContextData, { categoryListInfo: [...categories, info] })
         setIsDataLoading(false)
     }
 

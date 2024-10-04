@@ -36,25 +36,29 @@ const getModelsData = async ({ idToken, accessToken, queryString }: any) => {
                 "createdAt": "2024-09-27T12:24:10.043Z",
                 "modelDescription": "description 1",
                 "modelName": "Budget plan 2024",
-                "updatedAt": "2024-09-27T12:24:10.043Z"
+                "updatedAt": "2024-09-27T12:24:10.043Z",
+                "id":"10001",
             },
             {
                 "createdAt": "2024-09-26T11:20:15.002Z",
                 "modelDescription": "description 2",
                 "modelName": "Marketing Strategy 2024",
-                "updatedAt": "2024-09-26T11:20:15.002Z"
+                "updatedAt": "2024-09-26T11:20:15.002Z",
+                "id":"10002"
             },
             {
                 "createdAt": "2024-09-25T10:18:09.545Z",
                 "modelDescription": "description 3",
                 "modelName": "Operational Plan 2024",
-                "updatedAt": "2024-09-25T10:18:09.545Z"
+                "updatedAt": "2024-09-25T10:18:09.545Z",
+                "id":"10003"
             },
             {
                 "createdAt": "2024-09-24T09:14:08.301Z",
                 "modelDescription": "description 4",
                 "modelName": "Financial Overview 2024",
-                "updatedAt": "2024-09-24T09:14:08.301Z"
+                "updatedAt": "2024-09-24T09:14:08.301Z",
+                "id":"10004"
             }
         ]
 

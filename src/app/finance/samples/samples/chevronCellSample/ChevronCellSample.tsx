@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { columns as dataColumns } from '../../data/chevron/columns';
 import { rows as dataRows, headerRow } from '../../data/chevron/rows';
@@ -8,6 +8,8 @@ import './styling.scss';
 import { Button } from '@/components/ui/button';
 import { PiPlus } from 'react-icons/pi';
 import { ChevronCellTemplate } from './CustomChevron';
+import { useAppContext } from '@/app/root-lib';
+import { setContextApiData } from '@/utils/form-utils';
 
 const ReactGridContainer = styled.div`
 overflow: auto;
@@ -40,7 +42,7 @@ const isRowFullyExpanded = (rows: Row[], row: Row): boolean => {
     return true;
 };
 
-const getExpandedRows = (rows: Row[]): Row[] => rows.filter(row => {
+const getExpandedRows = (rows: Row[]): Row[] => rows?.filter(row => {
     const areAllParentsExpanded = isRowFullyExpanded(rows, row);
     return areAllParentsExpanded !== undefined ? areAllParentsExpanded : true;
 });
@@ -70,14 +72,30 @@ const buildTree = (rows: Row[]): Row[] => rows.map(row => {
     return row;
 });
 
-export const ChevronCellSample: React.FunctionComponent = () => {
-
+export const ChevronCellSample = ({ modelId, selectedModelInfo }: any) => {
+    const { appContextData, setAppContextData }: any = useAppContext()
     const [state, setState] = useState<ChevronTestGridStateData>(() => {
         const columns = [...dataColumns(true, false)];
         return { columns, rows: buildTree([...dataRows(true)]) }
     });
 
+    const [isCellUpdating, setIsCellUpdating] = useState(false);
+
+
     const [rowsToRender, setRowsToRender] = useState<Row[]>([headerRow, ...getExpandedRows(state.rows)]);
+
+    console.log(">>>>>>>>>>>>>>>appContextData>", appContextData)
+
+    console.log(">>>>>>>>>>>>>>>selectedModelInfo>", selectedModelInfo)
+
+    useEffect(() => {
+        if (selectedModelInfo?.tableInfo&&!isCellUpdating) {
+            setState(selectedModelInfo?.tableInfo)
+            setRowsToRender([headerRow, ...selectedModelInfo?.tableInfo?.rows])
+        }
+    }, [selectedModelInfo?.tableInfo])
+
+
 
     const handleChanges = (changes: CellChange[]) => {
         const newState = { ...state };
@@ -86,8 +104,30 @@ export const ChevronCellSample: React.FunctionComponent = () => {
             const changeColumnIdx = newState.columns.findIndex(el => el.columnId === change.columnId);
             newState.rows[changeRowIdx].cells[changeColumnIdx] = change.newCell;
         });
+
+
+        const tableInfo = { ...state, rows: buildTree(newState.rows) }
+
+
+
+        console.log('setState>>>>>>>>>', { ...state, rows: buildTree(newState.rows) })
+        console.log('setRowsToRender>>>>>>>>>', [headerRow, ...getExpandedRows(newState.rows)])
+
         setState({ ...state, rows: buildTree(newState.rows) });
         setRowsToRender([headerRow, ...getExpandedRows(newState.rows)]);
+
+        if (selectedModelInfo?.id) {
+            const updatedModelListWithTable = appContextData?.modelsListInfo?.map((model: any) => {
+                if (model.id === modelId) {
+                    model.tableInfo = tableInfo
+                }
+                return model
+            }
+            )
+            setIsCellUpdating(true)
+            console.log('updatedModelListWithTable>>>>>>>>>', updatedModelListWithTable)
+            setContextApiData(setAppContextData, { modelsListInfo: updatedModelListWithTable })
+        }
     };
 
     const reorderArray = <T extends {}>(arr: T[], idxs: number[], to: number) => {
@@ -144,6 +184,8 @@ export const ChevronCellSample: React.FunctionComponent = () => {
 
         const reorderedRows = reorderArray(newState.rows, rowIdxs, to);
 
+
+
         setState({ ...newState, rows: buildTree(reorderedRows) });
         setRowsToRender([headerRow, ...getExpandedRows(reorderedRows)]);
     }
@@ -181,7 +223,7 @@ export const ChevronCellSample: React.FunctionComponent = () => {
             height: 40,
             reorderable: true,
             cells: [
-                { type: 'chevron', text: ``, isExpanded: false, parentId:6 },
+                { type: 'chevron', text: ``, isExpanded: false, parentId: 6 },
                 { type: 'text', text: '' },
                 { type: 'text', text: '' },
                 { type: 'text', text: '' },
@@ -210,7 +252,7 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                 ...menuOptions,
                 {
                     id: 'removeRow', label: 'Remove row', handler: () => {
-                        const rows = state.rows.filter(row => !selectedRowIds.includes(row.rowId));
+                        const rows = state?.rows?.filter(row => !selectedRowIds.includes(row.rowId));
                         setRowsToRender([headerRow, ...getExpandedRows(rows)]);
                         setState({ ...state, rows });
                     }
@@ -245,8 +287,8 @@ export const ChevronCellSample: React.FunctionComponent = () => {
                     stickyTopRows={1}
                     customCellTemplates={{
                         'chevron': new ChevronCellTemplate(),
-                      }}
-                    // enableRowSelection
+                    }}
+                    enableRowSelection
                     enableColumnSelection
                     enableFillHandle
                     enableRangeSelection

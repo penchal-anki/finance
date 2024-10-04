@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactGrid, Column, Row } from "@silevis/reactgrid";
 import "@silevis/reactgrid/styles.css";
 import { PiPlus } from "react-icons/pi";
@@ -25,8 +25,15 @@ const headerRow: Row = {
 
 const getRows = (people: any): Row[] => [
     // headerRow,
+    {
+        rowId: 1,
+        height: 40,
+        cells: [
+            { type: "text", text: '' },
+        ]
+    },
     ...people?.map((person: { name: any; surname: any; }, idx: any) => ({
-        rowId: idx,
+        rowId: idx + 1,
         height: 40,
         cells: [
             { type: "text", text: person.name },
@@ -51,7 +58,7 @@ const applyChangesToPeople = (
 
 
 
- const GettingStartedSample = ({ listRows }: any) => {
+const GettingStartedSample = ({ listRows }: any) => {
     const [people, setPeople] = useState<any>(listRows || []);
 
     const rows = getRows(people);

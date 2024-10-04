@@ -121,7 +121,6 @@ export class ChevronCellTemplate implements CellTemplate<ChevronCell> {
         isInEditMode: boolean,
         onCellChanged: (cell: Compatible<ChevronCell>, commit: boolean) => void
     ): React.ReactNode {
-        console.log(">>>>>>>>>>cell", cell);
         return !isInEditMode ? (
             <>
                 {cell.hasChildren ? (
@@ -143,16 +142,14 @@ export class ChevronCellTemplate implements CellTemplate<ChevronCell> {
                     <div>
                         {cell.text}
                     </div>
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                         <PiLink
                             className="h-6 w-6 text-gray-500"
                             onClick={() => {
-                                console.log(">>>>>>>>>>cell", cell);
-                                console.log(">>>>>>>>asdasdasd>>",this.getCompatibleCell({ ...cell, isExpanded: !cell.isExpanded }))
                             }}
                         />
                         <PiArticle className="h-6 w-6 text-gray-500" />
-                    </div>
+                    </div> */}
                 </div>
 
 
